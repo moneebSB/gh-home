@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import process from 'node:process';
-import { execSync } from 'node:child_process'
+import {execSync} from 'node:child_process'
 import meow from 'meow';
 import gitRemoteOriginUrl from 'git-remote-origin-url';
 import gitRemoteUpstreamUrl from 'git-remote-upstream-url';
