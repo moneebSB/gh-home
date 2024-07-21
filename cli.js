@@ -14,6 +14,7 @@ const cli = meow(`
 	Options
 	  --prs -p	   Open the pull requests of a GitHub repo
 	  --issues -i  Open the issues of a GitHub repo
+	  --openPullRequest -o  Open the pull request of a GitHub repo
 
 	Examples
 	  $ gh-home
@@ -34,6 +35,11 @@ const cli = meow(`
 			default: false,
 			alias: 'i',
 		},
+		openPullRequest: {
+			type: 'boolean',
+			alias: 'o',
+			hidden: true,
+		}
 	},
 });
 
@@ -45,6 +51,8 @@ const openUrl = (url, options) => {
 		url = `${url}/pulls`;
 	} else if (options.issues) {
 		url = `${url}/issues`;
+	}else if (options.openPullRequest) {
+		url = `${url}/compare/staging...${execSync('git rev-parse --abbrev-ref HEAD').toString().trim()}`;
 	}
 
 	return open(url);
