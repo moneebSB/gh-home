@@ -6,7 +6,7 @@ import gitRemoteUpstreamUrl from 'git-remote-upstream-url';
 import githubUrlFromGit from 'github-url-from-git';
 import open from 'open';
 import execa from 'execa';
-
+import { execSync } from 'node:child_process'
 const cli = meow(`
 	Usage
 	  $ gh-home [repo | user/repo]
@@ -39,7 +39,7 @@ const cli = meow(`
 			type: 'boolean',
 			alias: 'o',
 			hidden: true,
-		}
+		},
 	},
 });
 
@@ -51,7 +51,7 @@ const openUrl = (url, options) => {
 		url = `${url}/pulls`;
 	} else if (options.issues) {
 		url = `${url}/issues`;
-	}else if (options.openPullRequest) {
+	} else if (options.openPullRequest) {
 		url = `${url}/compare/staging...${execSync('git rev-parse --abbrev-ref HEAD').toString().trim()}`;
 	}
 
