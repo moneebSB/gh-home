@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 import process from 'node:process';
+import { execSync } from 'node:child_process'
 import meow from 'meow';
 import gitRemoteOriginUrl from 'git-remote-origin-url';
 import gitRemoteUpstreamUrl from 'git-remote-upstream-url';
 import githubUrlFromGit from 'github-url-from-git';
 import open from 'open';
 import execa from 'execa';
-import { execSync } from 'node:child_process'
+
 const cli = meow(`
 	Usage
 	  $ gh-home [repo | user/repo]
